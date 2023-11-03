@@ -6,8 +6,7 @@
 
 //Funcion para obtener la url de la api, pasandole el path.
 
-export const getApiUrl = (path) =>
-  `https://dashfinance-api-production.up.railway.app/${path}`;
-
 //export const getApiUrl = (path) =>
-// `http://localhost:5000/${path}`;
+//  `https://dashfinance-api-production.up.railway.app/${path}`;
+
+export const getApiUrl = (path) => `http://localhost:5000/${path}`;
