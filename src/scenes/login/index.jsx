@@ -1,7 +1,8 @@
-import { Box, Grid, TextField, Button, Paper, Link } from '@mui/material';
+import { Box, Grid, TextField, Button, Paper, Link,InputAdornment } from '@mui/material';
 import { useState } from "react";
 import { Link as RouterLink } from 'react-router-dom';
-
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -43,6 +44,7 @@ const Login = () => {
               fullWidth
               margin="normal"
               style={textFieldStyles}
+              InputProps={{ endAdornment: <InputAdornment position="end"><PersonOutlineOutlinedIcon></PersonOutlineOutlinedIcon></InputAdornment>}}
             />
           </Grid>
           <Grid item xs={12}>
@@ -55,6 +57,7 @@ const Login = () => {
               fullWidth
               margin="normal"
               style={textFieldStyles}
+              InputProps={{ endAdornment: <InputAdornment position="end"><HttpsOutlinedIcon></HttpsOutlinedIcon></InputAdornment>}}
             />
           </Grid>
           <Grid item xs={12}>

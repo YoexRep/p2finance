@@ -6,7 +6,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { tokens } from "../../theme";
 import { useTheme } from "@mui/material";
 //import {useEffect, useState} from 'react';
-import {  registrarUsuario} from "../../services/usuarios";
+import {  registrarUsuario, verificarSiExisteUsuario} from "../../services/usuarios";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -246,6 +246,25 @@ const Registrarse = () => {
   );
 };
 
+const validateUsername = async (username) => {
+  try {
+ 
+
+    const response = await verificarSiExisteUsuario(username);
+  
+    
+    if (Array.isArray(response) && response.length > 0 && response[0].hasOwnProperty('f_usuario')) {
+     //Usuario existe
+      return false;
+    } else {
+    //Usuario no existe
+      return true;
+    }
+  } catch (error) {
+  throw new Error('Error al verificar el usuario');
+  }
+};
+
 const claveRegExp =
 /^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#\$%\^&\*\(\)_\+\-=\[\]\{\};:\'",<>\.\\?\/])(.{6,})$/;
 
@@ -253,7 +272,7 @@ const claveRegExp =
 
 const checkoutSchema = yup.object().shape({
   nombre: yup.string().required("required"),
-  usuario: yup.string().required("required"),
+  usuario: yup.string().required("required").test('username-exists', 'Este usuario ya existe', validateUsername),
   clave: yup
   .string()
   .matches(claveRegExp, "La contraseña debe de contener Mayúsculas, minúsculas, símbolos, y tener más de 5 caracteres.")
@@ -263,8 +282,8 @@ const checkoutSchema = yup.object().shape({
   .oneOf([yup.ref('clave')], 'Las contraseñas no coinciden') // Compara con la clave
   .required("required"),
   correo: yup.string().email("invalid email").required("required"),
-  //fecha: yup.date().required("Fecha requerida"),
 });
+
 const initialValues = {
   nombre: "",
   usuario: "",

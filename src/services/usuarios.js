@@ -21,6 +21,25 @@ export const obtenerUsuario = async ({ parametros }) => {
   }
 };
 
+export const verificarSiExisteUsuario = async (username) => {
+  try {
+    const url = getApiUrl(`verificarUser/${username}`);
+
+    const options = {
+      method: "GET",
+    };
+
+    const response = await fetch(url, options);
+
+    const result = await response.text();
+
+    return JSON.parse(result);
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
 export const registrarUsuario = async ({ values }) => {
   try {
     const url = getApiUrl(`createUser`);
