@@ -29,18 +29,22 @@ const Login = () => {
 
     try {
 
-    
+  
+      const response = await validarLogin({ values});
 
-      const response = await validarLogin(values);
-    
-      alert(values + " "+ response)
-      if (Array.isArray(response) && response.length > 0 && response[0].hasOwnProperty('f_usuario')) {
+     const p2Token = {usuario: response.usuario,token: response.token};
+
+     
+      if (p2Token.token != undefined) {
        //Usuario existe
-        console.log("Se encontro el usuario "+response[0]);
-        const userToken = 'userToken';
-        localStorage.setItem('token', userToken);
+    
+        localStorage.setItem('p2Token', p2Token);
+        window.location.reload();
+
+
       } else {
-        alert("No se encontro el usuario");
+        setOpenSnackBarAlert(true);
+        
       }
     } catch (error) {
     throw new Error('Error al verificar el usuario');
@@ -56,7 +60,7 @@ const Login = () => {
 
 
 
-  const [openSnackBarAlert, setOpenSnackBarAert] = useState(false)
+  const [openSnackBarAlert, setOpenSnackBarAlert] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
  
@@ -67,7 +71,7 @@ const Login = () => {
       if(reason=='clickaway'){
           return
       }else{
-        setOpenSnackBarAert(false)
+        setOpenSnackBarAlert(false)
       }
   }
 
@@ -207,8 +211,8 @@ const Login = () => {
 
 
       <Snackbar open={openSnackBarAlert} autoHideDuration={6000} onClose={handleCloseSnackBarAlert} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}>
-        <Alert onClose={handleCloseSnackBarAlert} severity="success" sx={{ width: '100%' }}>
-          Registro completado
+        <Alert onClose={handleCloseSnackBarAlert} severity="error" sx={{ width: '100%' }}>
+        Usuario o clave invalida
         </Alert>
       </Snackbar>
 

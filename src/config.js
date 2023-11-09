@@ -9,4 +9,4 @@
 //export const getApiUrl = (path) =>
 //  `https://dashfinance-api-production.up.railway.app/${path}`;
 
-export const getApiUrl = (path) => `http://localhost:5000/${path}`;
+export const ApiUrl = (path) => `http://localhost:5000/${path}`;

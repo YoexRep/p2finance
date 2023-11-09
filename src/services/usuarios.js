@@ -1,10 +1,10 @@
-import { getApiUrl } from "../config";
+import { ApiUrl } from "../config";
 
 export const obtenerUsuario = async ({ parametros }) => {
   try {
     const { id } = parametros;
 
-    const url = getApiUrl(`getUser/${id}`);
+    const url = ApiUrl(`getUser/${id}`);
 
     const options = {
       method: "GET",
@@ -23,7 +23,7 @@ export const obtenerUsuario = async ({ parametros }) => {
 
 export const validarLogin = async ({ values }) => {
   try {
-    const url = getApiUrl(`validarLogin`);
+    const url = ApiUrl(`validarLogin`);
 
     const options = {
       method: "POST",
@@ -46,7 +46,7 @@ export const validarLogin = async ({ values }) => {
 
 export const verificarSiExisteUsuario = async (username) => {
   try {
-    const url = getApiUrl(`verificarUser/${username}`);
+    const url = ApiUrl(`verificarUser/${username}`);
 
     const options = {
       method: "GET",
@@ -65,7 +65,7 @@ export const verificarSiExisteUsuario = async (username) => {
 
 export const registrarUsuario = async ({ values }) => {
   try {
-    const url = getApiUrl(`createUser`);
+    const url = ApiUrl(`createUser`);
 
     const options = {
       method: "POST",
@@ -92,7 +92,7 @@ export const registrarUsuario = async ({ values }) => {
 
 export const updateMicartera = async ({ values }) => {
   try {
-    const url = getApiUrl(`updateUser`);
+    const url = ApiUrl(`updateUser`);
 
     const options = {
       method: "POST",

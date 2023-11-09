@@ -43,7 +43,7 @@ const Registrarse = () => {
 
       await registrarUsuario({ values}).then(async()=>{
         
-        setOpenSnackBarAert(true);
+        setOpenSnackBarAlert(true);
         actions.resetForm();
       });
 
@@ -58,7 +58,7 @@ const Registrarse = () => {
 
 
 
-  const [openSnackBarAlert, setOpenSnackBarAert] = useState(false)
+  const [openSnackBarAlert, setOpenSnackBarAlert] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
  
@@ -69,7 +69,7 @@ const Registrarse = () => {
       if(reason=='clickaway'){
           return
       }else{
-        setOpenSnackBarAert(false)
+        setOpenSnackBarAlert(false)
       }
   }
 

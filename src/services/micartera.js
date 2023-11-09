@@ -1,11 +1,11 @@
-import { getApiUrl } from "../config";
+import { ApiUrl } from "../config";
 
 export const getMicartera = async ({ parametros }) => {
   try {
     const { id } = parametros;
 
-    const url = getApiUrl(`getMiCartera/${id}`);
- 
+    const url = ApiUrl(`getMiCartera/${id}`);
+
     const options = {
       method: "GET",
     };
@@ -23,8 +23,8 @@ export const getMicartera = async ({ parametros }) => {
 
 export const setMicartera = async ({ values }) => {
   try {
-    const url = getApiUrl(`setMiCartera`);
-    console.log("Se ejecuta set "+values.precio_compra);
+    const url = ApiUrl(`setMiCartera`);
+    console.log("Se ejecuta set " + values.precio_compra);
     const options = {
       method: "POST",
       body: new URLSearchParams({
@@ -50,7 +50,7 @@ export const setMicartera = async ({ values }) => {
 
 export const updateMicartera = async ({ values }) => {
   try {
-    const url = getApiUrl(`updateMiCartera`);
+    const url = ApiUrl(`updateMiCartera`);
 
     const options = {
       method: "POST",

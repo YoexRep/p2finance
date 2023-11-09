@@ -16,7 +16,7 @@ import Login from "./scenes/login";
 const App = () => {
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
-  const isAuthenticated = !!localStorage.getItem("token");
+  const isAuthenticated = !!localStorage.getItem("p2Token");
 
   return (
     <>

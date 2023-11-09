@@ -1,12 +1,11 @@
-import { getApiUrl } from "../config";
+import { ApiUrl } from "../config";
 
 export const getActivos = async ({ parametros }) => {
   try {
     const { id } = parametros;
 
-    const url = getApiUrl(`getActivos/${id}`);
- 
-        console.log("este es la url "+url)
+    const url = ApiUrl(`getActivos/${id}`);
+
     const options = {
       method: "GET",
     };
