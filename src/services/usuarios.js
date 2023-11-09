@@ -21,6 +21,29 @@ export const obtenerUsuario = async ({ parametros }) => {
   }
 };
 
+export const validarLogin = async ({ values }) => {
+  try {
+    const url = getApiUrl(`validarLogin`);
+
+    const options = {
+      method: "POST",
+      body: new URLSearchParams({
+        f_usuario: values.usuario,
+        f_clave: values.clave,
+      }),
+    };
+
+    const response = await fetch(url, options);
+
+    const result = await response.text();
+
+    return JSON.parse(result);
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
 export const verificarSiExisteUsuario = async (username) => {
   try {
     const url = getApiUrl(`verificarUser/${username}`);

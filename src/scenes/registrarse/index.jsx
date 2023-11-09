@@ -1,5 +1,5 @@
 
-import { Box, Button, TextField, Paper, InputAdornment, Typography} from "@mui/material";
+import {Grid, Box, Link, TextField, Paper, InputAdornment, Typography, Snackbar, Alert} from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -11,12 +11,20 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import * as dayjs from 'dayjs'
+import {  useState } from "react";
+import { Link as RouterLink } from 'react-router-dom';
 
 //Iconos
 import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import SaveIcon from '@mui/icons-material/Save';
+
+//Mui lab
+
+import {LoadingButton} from '@mui/lab'
+
 
 const Registrarse = () => {
 
@@ -24,27 +32,47 @@ const Registrarse = () => {
 
 
 
-  const handleFormSubmit = async (values) => {
   
 
+  const handleFormSubmit = async (values, actions) => {
+
+    setIsLoading(true);
 
     try{
+ 
 
       await registrarUsuario({ values}).then(async()=>{
-       
-        alert('Usuario registrado');
+        
+        setOpenSnackBarAert(true);
+        actions.resetForm();
       });
 
     }catch(error){
       console.error(error);
     }
+
+    setIsLoading(false);
   };
 
-  // const [micartera, setMicarteraState] = useState([]);
 
-  // useEffect(() => {
+
+
+
+  const [openSnackBarAlert, setOpenSnackBarAert] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+
+ 
   
-  // }, []);
+  
+
+  const handleCloseSnackBarAlert = (event, reason) =>{
+      if(reason=='clickaway'){
+          return
+      }else{
+        setOpenSnackBarAert(false)
+      }
+  }
+
 
 
 
@@ -218,14 +246,47 @@ const Registrarse = () => {
        </LocalizationProvider>
 
 
-    <Button type="submit" color="secondary" variant="contained" sx={{
+ 
+
+            <LoadingButton 
+             loading={isLoading}
+             variant="contained"
+             type="submit"  
+             loadingPosition="start"
+            
+             color="secondary"
+            sx={{
       
-          gridColumn: "span 2",
-          fontWeight: 'bold' 
-        }}>
+              gridColumn: "span 2",
+              fontWeight: 'bold' 
+            }}
+            startIcon={<SaveIcon/>}
+
+
+            >
               Registrarse
-            </Button>
+            </LoadingButton>
            
+
+            <Grid item xs={12} style={{ textAlign: "center" ,  gridColumn: "span 4",}}>
+            <Link component={RouterLink} to="/" color="primary">
+              Iniciar sesión
+            </Link>
+            
+          </Grid>
+
+
+
+
+      <Snackbar open={openSnackBarAlert} autoHideDuration={6000} onClose={handleCloseSnackBarAlert} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}>
+        <Alert onClose={handleCloseSnackBarAlert} severity="success" sx={{ width: '100%' }}>
+          Registro completado
+        </Alert>
+      </Snackbar>
+
+
+        
+  
 
           </Box>
 
@@ -234,8 +295,9 @@ const Registrarse = () => {
         </form>
       )}
     </Formik>
-      
+  
     </Paper>
+ 
   </Box>
  
 
