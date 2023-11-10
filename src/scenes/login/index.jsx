@@ -32,14 +32,16 @@ const Login = () => {
   
       const response = await validarLogin({ values});
 
-     const p2Token = {usuario: response.usuario,token: response.token};
 
-     
-      if (p2Token.token != undefined) {
-       //Usuario existe
+      //Convertimos las respues en un json
+     const p2Token = JSON.stringify(response);
     
+     
+      if (JSON.parse(p2Token).token !== undefined) {
+       //Usuario existe
+  
         localStorage.setItem('p2Token', p2Token);
-        window.location.reload();
+        window.location.href = '/';
 
 
       } else {

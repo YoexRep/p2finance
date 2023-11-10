@@ -100,10 +100,10 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  DashFinance
+                  P2FINANCE
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                  PortaFolio crypto
+                  Administra tus finanzas
                 </Typography>
               </Box>
             </Box>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
@@ -16,7 +16,17 @@ import Login from "./scenes/login";
 const App = () => {
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
-  const isAuthenticated = !!localStorage.getItem("p2Token");
+  //const isAuthenticated = !!localStorage.getItem("p2Token");
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const loggedUserJSON = window.localStorage.getItem("p2Token");
+    if (loggedUserJSON) {
+      const user = JSON.parse(loggedUserJSON);
+      setUser(user);
+      //noteService.setToken(user.token)
+    }
+  }, []);
 
   return (
     <>
@@ -24,7 +34,7 @@ const App = () => {
         <ThemeProvider theme={theme}>
           <CssBaseline />
 
-          {!isAuthenticated ? (
+          {!user ? (
             <div className="loginApp">
               <main className="content">
                 <Routes>
