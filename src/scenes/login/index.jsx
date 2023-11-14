@@ -104,7 +104,7 @@ const Login = () => {
     display="flex"
     justifyContent="center"
     alignItems="center"
-    height="100vh"
+    height="80vh"
    
   >
     <Paper elevation={0} p={0} style={paperStyle} >
@@ -197,7 +197,7 @@ const Login = () => {
             }}
             startIcon={<LoginOutlinedIcon/>}
 
-
+            itemID='BtnIniciarSession'
             >
               Iniciar sesión
             </LoadingButton>

@@ -37,6 +37,7 @@ const App = () => {
           {!user ? (
             <div className="loginApp">
               <main className="content">
+                <Topbar setIsSidebar={setIsSidebar} isLogin={true} />
                 <Routes>
                   <Route path="/" element={<Login />} />
                   <Route path="/registrarse" element={<Registrarse />} />

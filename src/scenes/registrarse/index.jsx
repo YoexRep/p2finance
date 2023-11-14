@@ -96,7 +96,7 @@ const Registrarse = () => {
     display="flex"
     justifyContent="center"
     alignItems="center"
-    height="100vh"
+    height="80vh"
   
   >
     <Paper elevation={0} p={0} style={paperStyle}>
