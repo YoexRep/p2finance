@@ -1,5 +1,5 @@
 import { Box, Grid, TextField, Button, Paper, Link,InputAdornment, Typography , Snackbar, Alert} from '@mui/material';
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link as RouterLink } from 'react-router-dom';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import HttpsOutlinedIcon from '@mui/icons-material/HttpsOutlined';
@@ -11,6 +11,8 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import {  validarLogin} from "../../services/usuarios";
 import * as yup from "yup";
 //Mui lab
+import { LanguageContext,useLanguage  } from "../../languages"; // Reemplaza "tuRuta" por la ruta correcta
+
 
 import {LoadingButton} from '@mui/lab'
 
@@ -19,9 +21,37 @@ const Login = () => {
 
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
+ const { language, translations } =  useContext(LanguageContext);
+
+
+
+
+
+  let translationJson = "";
+
+  if (typeof translations === 'string') {
+    translationJson = JSON.parse(translations);
+}
+
+console.log(translationJson)
+console.log(typeof  translationJson)
 
 
   
+
+  // const translationsDataToJson = JSON.stringify(translations);
+
+
+  // const translationjson = JSON.parse(translations) 
+  // console.log(typeof  translationjson)
+
+  // let result = translationjson.find(
+  //   item => item.f_idioma === language && item.f_elemento === "BtnIniciarSession"
+  // );
+  
+
+  // console.log(typeof  result)
+
 
   const handleFormSubmit = async (values, actions) => {
 
@@ -199,7 +229,15 @@ const Login = () => {
 
             itemID='BtnIniciarSession'
             >
-              Iniciar sesión
+     
+              {
+
+        
+
+
+              }
+
+           
             </LoadingButton>
            
 

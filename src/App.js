@@ -11,6 +11,8 @@ import Activos from "./scenes/activos";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 
+import { LanguageContext, useLanguage } from "./languages";
+
 import Login from "./scenes/login";
 
 const App = () => {
@@ -18,6 +20,8 @@ const App = () => {
   const [isSidebar, setIsSidebar] = useState(true);
   //const isAuthenticated = !!localStorage.getItem("p2Token");
   const [user, setUser] = useState(null);
+
+  const languageContext = useLanguage();
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem("p2Token");
@@ -30,35 +34,37 @@ const App = () => {
 
   return (
     <>
-      <ColorModeContext.Provider value={colorMode}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
+      <LanguageContext.Provider value={languageContext}>
+        <ColorModeContext.Provider value={colorMode}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
 
-          {!user ? (
-            <div className="loginApp">
-              <main className="content">
-                <Topbar setIsSidebar={setIsSidebar} isLogin={true} />
-                <Routes>
-                  <Route path="/" element={<Login />} />
-                  <Route path="/registrarse" element={<Registrarse />} />
-                </Routes>
-              </main>
-            </div>
-          ) : (
-            <div className="app">
-              <Sidebar isSidebar={isSidebar} />
-              <main className="content">
-                <Topbar setIsSidebar={setIsSidebar} />
-                <Routes>
-                  <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path="/micartera" element={<Cartera />} />
-                  <Route path="/Activos" element={<Activos />} />
-                </Routes>
-              </main>
-            </div>
-          )}
-        </ThemeProvider>
-      </ColorModeContext.Provider>
+            {!user ? (
+              <div className="loginApp">
+                <main className="content">
+                  <Topbar setIsSidebar={setIsSidebar} isLogin={true} />
+                  <Routes>
+                    <Route path="/" element={<Login />} />
+                    <Route path="/registrarse" element={<Registrarse />} />
+                  </Routes>
+                </main>
+              </div>
+            ) : (
+              <div className="app">
+                <Sidebar isSidebar={isSidebar} />
+                <main className="content">
+                  <Topbar setIsSidebar={setIsSidebar} />
+                  <Routes>
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/micartera" element={<Cartera />} />
+                    <Route path="/Activos" element={<Activos />} />
+                  </Routes>
+                </main>
+              </div>
+            )}
+          </ThemeProvider>
+        </ColorModeContext.Provider>
+      </LanguageContext.Provider>
     </>
   );
 };

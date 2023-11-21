@@ -16,12 +16,11 @@ const Topbar = ({ isLogin }) => {
   const colorMode = useContext(ColorModeContext);
   const [idiomaSelect, setIdiomaSelect] = useState("Español");
 
-  // const [language, setLanguage, translations] = useContext(LanguageContext);
+  const { language, changeLanguage } = useContext(LanguageContext);
 
-  const handleChange = (event) => {
-     setIdiomaSelect(event.target.value);
-    // const newLanguage = event.target.value === "Español" ? "es" : "en"; // Mapea el valor del idioma al código de idioma correspondiente
-    // setLanguage(newLanguage); // Actualiza el idioma utilizando la función del contexto
+  const handleLanguageChange = (e) => {
+   changeLanguage(e.target.value); 
+    setIdiomaSelect(e.target.value)
   };
 
   const handleLogout = () => {
@@ -44,7 +43,7 @@ const Topbar = ({ isLogin }) => {
 
           <TextField
             select
-            onChange={handleChange}
+            onChange={handleLanguageChange}
             value={idiomaSelect}
             name="IdiomaSelect"
             sx={{ gridColumn: "span 2" }}
