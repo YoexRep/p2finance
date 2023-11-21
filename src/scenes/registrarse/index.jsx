@@ -25,8 +25,12 @@ import SaveIcon from '@mui/icons-material/Save';
 
 import {LoadingButton} from '@mui/lab'
 
+import {useTranslation} from "react-i18next"
+
 
 const Registrarse = () => {
+
+  const [texto, i18n] = useTranslation("global");
 
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
@@ -109,11 +113,11 @@ const Registrarse = () => {
         fontWeight="bold"
         sx={{ m: "0 0 5px 0" }}
       >
-        Registrarse
+       {texto("Register.TitleRegister")}
       </Typography>
 
       <Typography variant="h5" color={colors.greenAccent[700]}>
-      Información del usuario
+      {texto("Register.SubTitleRegister")}
       </Typography>
       </Box>
 
@@ -146,7 +150,7 @@ const Registrarse = () => {
               fullWidth
               variant="filled"
               type="text"
-              label="Nombre completo"
+              label=  {texto("Register.TxtFullName")}
               onBlur={handleBlur}
               onChange={handleChange}
               value={values.nombre}
@@ -162,7 +166,7 @@ const Registrarse = () => {
               fullWidth
               variant="filled"
               type="text"
-              label="Usuario"
+              label= {texto("Register.TxtUser")}
               onBlur={handleBlur}
               onChange={handleChange}
               value={values.usuario}
@@ -179,7 +183,7 @@ const Registrarse = () => {
               fullWidth
               variant="filled"
               type="password"
-              label="Contraseña"
+              label={texto("Register.TxtPassword")}
               onBlur={handleBlur}
               onChange={handleChange}
               value={values.clave}
@@ -194,7 +198,7 @@ const Registrarse = () => {
               fullWidth
               variant="filled"
               type="password"
-              label="Confirmar contraseña"
+              label={texto("Register.TxtConfirmPassword")}
               onBlur={handleBlur}
               onChange={handleChange}
               value={values.claveConfirmacion}
@@ -211,7 +215,7 @@ const Registrarse = () => {
               fullWidth
               variant="filled"
               type="email"
-              label="Correo"
+              label={texto("Register.TxtEmail")}
               onBlur={handleBlur}
               onChange={handleChange}
               value={values.correo}
@@ -264,13 +268,16 @@ const Registrarse = () => {
 
 
             >
-              Registrarse
+              {
+                    texto("Register.BtnRegister")
+              }
+
             </LoadingButton>
            
 
             <Grid item xs={12} style={{ textAlign: "center" ,  gridColumn: "span 4",}}>
             <Link component={RouterLink} to="/" color="primary">
-              Iniciar sesión
+            {texto("Register.LinkLogin")}
             </Link>
             
           </Grid>

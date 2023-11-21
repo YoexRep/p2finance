@@ -1,0 +1,22 @@
+{
+
+    "Login":{
+        "TxtUser": "Usuario",
+        "TxtPassword": "Contraseña",
+        "BtnLogin": "Iniciar sesión",
+        "LinkRegister": "Registrarse",
+        "MsgError": "Usuario o contraseña invalida"
+    },
+    "Register":{
+        "TitleRegister": "Registrar",
+        "SubTitleRegister": "Información del usuario",
+        "TxtFullName": "Nombre completo",
+        "TxtUser": "Usuario",
+        "TxtPassword": "Contraseña",
+        "TxtConfirmPassword": "Confirmar Contraseña",
+        "TxtEmail": "Correo",
+        "BtnRegister": "Registrar",
+        "LinkLogin": "Iniciar sesión"
+    }
+
+}

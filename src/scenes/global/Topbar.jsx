@@ -8,18 +8,24 @@ import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchIcon from "@mui/icons-material/Search";
-import { LanguageContext } from "../../languages"; // Reemplaza "tuRuta" por la ruta correcta
+
+import {useTranslation} from "react-i18next"
 
 const Topbar = ({ isLogin }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
-  const [idiomaSelect, setIdiomaSelect] = useState("Español");
+  const [idiomaSelect, setIdiomaSelect] = useState("es");
 
-  const { language, changeLanguage } = useContext(LanguageContext);
+  const [texto, i18n] = useTranslation("global");
+
+
 
   const handleLanguageChange = (e) => {
-   changeLanguage(e.target.value); 
+
+    i18n.changeLanguage(e.target.value)
+
+
     setIdiomaSelect(e.target.value)
   };
 
@@ -48,8 +54,8 @@ const Topbar = ({ isLogin }) => {
             name="IdiomaSelect"
             sx={{ gridColumn: "span 2" }}
           >
-            <MenuItem value="Español">Español</MenuItem>
-            <MenuItem value="English">English</MenuItem>
+            <MenuItem value="es">Español</MenuItem>
+            <MenuItem value="en">English</MenuItem>
           </TextField>
         </Box>
       ) : (
@@ -84,6 +90,16 @@ const Topbar = ({ isLogin }) => {
             <IconButton onClick={handleLogout}>
               <PersonOutlinedIcon />
             </IconButton>
+            <TextField
+            select
+            onChange={handleLanguageChange}
+            value={idiomaSelect}
+            name="IdiomaSelect"
+            sx={{ gridColumn: "span 2" }}
+          >
+            <MenuItem value="es">Español</MenuItem>
+            <MenuItem value="en">English</MenuItem>
+          </TextField>
           </Box>
         </Box>
       )}

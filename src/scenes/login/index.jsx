@@ -10,47 +10,16 @@ import { useTheme } from "@mui/material";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import {  validarLogin} from "../../services/usuarios";
 import * as yup from "yup";
-//Mui lab
-import { LanguageContext,useLanguage  } from "../../languages"; // Reemplaza "tuRuta" por la ruta correcta
-
+import {useTranslation} from "react-i18next"
 
 import {LoadingButton} from '@mui/lab'
 
 const Login = () => {
  
+    const [texto, i18n] = useTranslation("global");
 
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
- const { language, translations } =  useContext(LanguageContext);
-
-
-
-
-
-  let translationJson = "";
-
-  if (typeof translations === 'string') {
-    translationJson = JSON.parse(translations);
-}
-
-console.log(translationJson)
-console.log(typeof  translationJson)
-
-
-  
-
-  // const translationsDataToJson = JSON.stringify(translations);
-
-
-  // const translationjson = JSON.parse(translations) 
-  // console.log(typeof  translationjson)
-
-  // let result = translationjson.find(
-  //   item => item.f_idioma === language && item.f_elemento === "BtnIniciarSession"
-  // );
-  
-
-  // console.log(typeof  result)
 
 
   const handleFormSubmit = async (values, actions) => {
@@ -183,7 +152,7 @@ console.log(typeof  translationJson)
               fullWidth
               variant="filled"
               type="text"
-              label="Usuario"
+              label={texto("Login.TxtUser")}
               onBlur={handleBlur}
               onChange={handleChange}
               value={values.usuario}
@@ -200,7 +169,7 @@ console.log(typeof  translationJson)
               fullWidth
               variant="filled"
               type="password"
-              label="Contraseña"
+              label= {texto("Login.TxtPassword")}
               onBlur={handleBlur}
               onChange={handleChange}
               value={values.clave}
@@ -227,15 +196,10 @@ console.log(typeof  translationJson)
             }}
             startIcon={<LoginOutlinedIcon/>}
 
-            itemID='BtnIniciarSession'
+       
             >
      
-              {
-
-        
-
-
-              }
+              {    texto("Login.BtnLogin")  }
 
            
             </LoadingButton>
@@ -244,7 +208,7 @@ console.log(typeof  translationJson)
          
             <Grid item xs={12} style={{ textAlign: "right", gridColumn: "span 4" }}>
             <Link component={RouterLink} to="/registrarse" color="primary">
-              Registrarse
+            {texto("Login.LinkRegister")}
             </Link>
           </Grid>
 
@@ -252,7 +216,7 @@ console.log(typeof  translationJson)
 
       <Snackbar open={openSnackBarAlert} autoHideDuration={6000} onClose={handleCloseSnackBarAlert} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}>
         <Alert onClose={handleCloseSnackBarAlert} severity="error" sx={{ width: '100%' }}>
-        Usuario o clave invalida
+        {texto("Login.MsgError")}
         </Alert>
       </Snackbar>
 

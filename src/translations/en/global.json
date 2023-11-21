@@ -1,0 +1,22 @@
+{
+
+    "Login":{
+        "TxtUser": "User",
+        "TxtPassword": "Password",
+        "BtnLogin": "Login",
+        "LinkRegister": "Register",
+        "MsgError": "Invalid user o password"
+    },
+    "Register":{
+        "TitleRegister": "Register",
+        "SubTitleRegister": "User information",
+        "TxtFullName": "Full name",
+        "TxtUser": "User",
+        "TxtPassword": "Password",
+        "TxtConfirmPassword": "Confirm passowrd",
+        "TxtEmail": "Email",
+        "BtnRegister": "Register",
+        "LinkLogin": "Sign-in"
+    }
+
+}
