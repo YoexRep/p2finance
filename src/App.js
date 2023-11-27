@@ -6,6 +6,8 @@ import Dashboard from "./scenes/dashboard";
 import Cartera from "./scenes/micartera";
 import Registrarse from "./scenes/registrarse";
 import Activos from "./scenes/activos";
+import RolYPermiso from "./scenes/rolespermisos";
+
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import Login from "./scenes/login";
@@ -65,6 +67,7 @@ const App = () => {
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/micartera" element={<Cartera />} />
                     <Route path="/Activos" element={<Activos />} />
+                    <Route path="/rolespermisos" element={<RolYPermiso />} />
                   </Routes>
                 </main>
               </div>

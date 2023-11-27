@@ -8,7 +8,7 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalanceWalletOutlined';
 import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-
+import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -111,7 +111,7 @@ const Sidebar = () => {
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
             <Item
-              title="Dashboard"
+              title="Inicio"
               to="/"
               icon={<HomeOutlinedIcon />}
               selected={selected}
@@ -131,6 +131,15 @@ const Sidebar = () => {
               title="Activos"
               to="/activos"
               icon={<PieChartOutlineOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            
+            <Item
+              title="Roles y permisos"
+              to="/rolespermisos"
+              icon={<VerifiedUserIcon />}
               selected={selected}
               setSelected={setSelected}
             />
