@@ -5,7 +5,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { Checkbox } from '@mui/material';
 
-const RecursiveTreeView  = ({ nodes, parentChecked, onNodeSelect }) => {
+const RecursiveTreeView  = ({ nodes, parentChecked, onNodeSelect , style }) => {
   
     const [selectedNodes, setSelectedNodes] = useState([]);
     const [isParentChecked, setIsParentChecked] = useState(parentChecked);
@@ -42,6 +42,8 @@ const RecursiveTreeView  = ({ nodes, parentChecked, onNodeSelect }) => {
     <TreeView
     defaultCollapseIcon={<ExpandMoreIcon />}
     defaultExpandIcon={<ChevronRightIcon />}
+
+    sx={style}
   >
     {nodes.map((node) => (
       <TreeItem

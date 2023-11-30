@@ -287,7 +287,7 @@ const Registrarse = () => {
 
       <Snackbar open={openSnackBarAlert} autoHideDuration={6000} onClose={handleCloseSnackBarAlert} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}>
         <Alert onClose={handleCloseSnackBarAlert} severity="success" sx={{ width: '100%' }}>
-          Registro completado
+        {texto("Register.AlertSnackBar")}
         </Alert>
       </Snackbar>
 

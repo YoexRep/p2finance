@@ -15,7 +15,7 @@ const Topbar = ({ isLogin }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
-  const [idiomaSelect, setIdiomaSelect] = useState("es");
+  const [idiomaSelect, setIdiomaSelect] = useState("en");
 
   const [texto, i18n] = useTranslation("global");
 

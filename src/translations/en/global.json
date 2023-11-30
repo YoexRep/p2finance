@@ -16,7 +16,33 @@
         "TxtConfirmPassword": "Confirm passowrd",
         "TxtEmail": "Email",
         "BtnRegister": "Register",
-        "LinkLogin": "Sign-in"
-    }
+        "LinkLogin": "Sign-in",
+        "AlertSnackBar": "Register complete"
+    },
+    "Menu":{
+        "MenuDescripcion": "MENU",
+        "MenuTittle": "P2FINANCE",
+        "MenuSubTitle": "Manage your finance"
+    
+    },
+    "MenuOpcion":{
+        "CodMenuHome": "PER1",
+        "MenuHome": "Home",
+
+        "CodMenuMyWallet": "PER2",
+        "MenuMyWallet": "My Wallet",
+
+        "CodMenuAssets": "PER3",
+        "MenuAssets": "Assets",
+
+        "CodMenuRolPermissions": "PER4",
+        "MenuRolPermissions": "Rol and permissions"
+    },
+    "RolsPermission":{
+        "Title": "Rols and Permissions",
+        "SubTitle": "Manage rols and permissions",
+        "CbRol": "Select rol",
+        "BtnAssignPermissions": "Assign permissions"
+      }
 
 }

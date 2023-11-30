@@ -9,6 +9,7 @@ import AccountBalanceWalletOutlinedIcon from '@mui/icons-material/AccountBalance
 import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
+import {useTranslation} from "react-i18next"
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -33,6 +34,8 @@ const Sidebar = () => {
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+
+  const [texto, i18n] = useTranslation("global");
 
   return (
     <Box
@@ -73,7 +76,7 @@ const Sidebar = () => {
                 ml="15px"
               >
                 <Typography variant="h3" color={colors.grey[100]}>
-                  MENU
+                {texto("Menu.MenuDescripcion")}
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
@@ -100,10 +103,10 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  P2FINANCE
+                   {texto("Menu.MenuTittle")}
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                  Administra tus finanzas
+                {texto("Menu.MenuSubTitle")}
                 </Typography>
               </Box>
             </Box>
@@ -111,7 +114,7 @@ const Sidebar = () => {
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
             <Item
-              title="Inicio"
+              title= {texto("MenuOpcion.MenuHome")}
               to="/"
               icon={<HomeOutlinedIcon />}
               selected={selected}
@@ -119,7 +122,7 @@ const Sidebar = () => {
             />
 
               <Item
-              title="Mi cartera"
+              title={texto("MenuOpcion.MenuMyWallet")}
               to="/micartera"
               icon={<AccountBalanceWalletOutlinedIcon />}
               selected={selected}
@@ -128,7 +131,7 @@ const Sidebar = () => {
 
 
             <Item
-              title="Activos"
+              title={texto("MenuOpcion.MenuAssets")}
               to="/activos"
               icon={<PieChartOutlineOutlinedIcon />}
               selected={selected}
@@ -137,7 +140,7 @@ const Sidebar = () => {
 
             
             <Item
-              title="Roles y permisos"
+              title={texto("MenuOpcion.MenuRolPermissions")}
               to="/rolespermisos"
               icon={<VerifiedUserIcon />}
               selected={selected}
