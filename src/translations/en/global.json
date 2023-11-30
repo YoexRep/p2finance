@@ -42,7 +42,19 @@
         "Title": "Rols and Permissions",
         "SubTitle": "Manage rols and permissions",
         "CbRol": "Select rol",
-        "BtnAssignPermissions": "Assign permissions"
-      }
+        "BtnAssignPermissions": "Assign permissions",
+        "AlertSnackBar": "Permissions asign"
+      },
+      "Rols":{
+          "CodRolAdministrator": "ROL1",
+          "RolAdministrator": "Administrator",
+
+          "CodRolNormal": "ROL2",
+          "RolNormal": "Normal",
+
+          "CodRolPremium": "ROL3",
+          "RolPremium": "Premium"
+         
+        }
 
 }

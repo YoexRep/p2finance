@@ -1,49 +1,89 @@
 
-import { Box, Button, TextField, MenuItem } from "@mui/material";
+import { Box, Button, TextField, MenuItem, Snackbar, Alert } from "@mui/material";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+
 import { tokens } from "../../theme";
 import { useTheme } from "@mui/material";
 import {useEffect, useState} from 'react';
-import { getMicartera, setMicartera} from "../../services/micartera";
-import { getPrecioCrypto } from "../../services/cryptos";
+
+import { registrarRolvsPermisos} from "../../services/rols_permissions";
+
 import RecursiveTreeView from "../../components/RecursiveTreeView";
 
 import {useTranslation} from "react-i18next"
 
 const RolsPermission = () => {
 
+  const [isLoading, setIsLoading] = useState(false)
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const [texto, i18n] = useTranslation("global");
 
+  const [selectedNodes, setSelectedNodes] = useState([]);
 
+  const handleNodeSelect = (selected) => {
+    setSelectedNodes(selected);
+  };
 
-  const handleFormSubmit = async (values) => {
+  const handleFormSubmit = async (values, actions) => {
      
 
-    try{
 
-   
+
+
+    setIsLoading(true);
+
+    try{
+     
+     
+      selectedNodes.forEach((node) => {
+       
+         registrarRolvsPermisos({ values, node }).then(async()=>{
+        
+          setOpenSnackBarAlert(true);
+          actions.resetForm();
+        });
+
+      });
+
+  
 
     }catch(error){
       console.error(error);
     }
+
+    setIsLoading(false);
   };
 
 
 
-
+  const [openSnackBarAlert, setOpenSnackBarAlert] = useState(false)
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+
+  const handleCloseSnackBarAlert = (event, reason) =>{
+    if(reason=='clickaway'){
+        return
+    }else{
+      setOpenSnackBarAlert(false)
+    }
+}
+
+
+
 
 
   const NodosPermisos = [
     {
       id: texto("MenuOpcion.CodMenuHome"),
-      name: texto("MenuOpcion.MenuHome")
+      name: texto("MenuOpcion.MenuHome"),
+      // children: [
+      //   {
+      //     id: 2,
+      //     name: 'Node 1.1',
+      //   }]
     },
     {
       id: texto("MenuOpcion.CodMenuMyWallet"),
@@ -61,11 +101,7 @@ const RolsPermission = () => {
   ];
 
 
-  const [selectedNodes, setSelectedNodes] = useState([]);
-
-  const handleNodeSelect = (selected) => {
-    setSelectedNodes(selected);
-  };
+  
 
   return (
     <> <Box m="20px">
@@ -101,19 +137,19 @@ const RolsPermission = () => {
             
               onBlur={handleBlur}
               onChange={handleChange}
-              value={values.criptomoneda}
-              name="criptomoneda"
-              error={!!touched.cripto && !!errors.cripto}
-              helperText={touched.cripto && errors.cripto}
+              value={values.rol}
+              name="rol"
+              error={!!touched.rol && !!errors.rol}
+              helperText={touched.rol && errors.rol}
               sx={{ gridColumn: "span 4" }}
             
             
             >
               
-              <MenuItem value={texto("MenuOpcion.CodMenuHome")}> {texto("MenuOpcion.MenuHome")}</MenuItem>
-              <MenuItem value={texto("MenuOpcion.CodMenuMyWallet")}> {texto("MenuOpcion.MenuMyWallet")}</MenuItem>
-              <MenuItem value={texto("MenuOpcion.CodMenuAssets")}> {texto("MenuOpcion.MenuAssets")}</MenuItem>
-              <MenuItem value={texto("MenuOpcion.CodMenuRolPermissions")}> {texto("MenuOpcion.MenuRolPermissions")}</MenuItem>
+              <MenuItem value={texto("Rols.CodRolAdministrator")}> {texto("Rols.RolAdministrator")}</MenuItem>
+              <MenuItem value={texto("Rols.CodRolNormal")}> {texto("Rols.RolNormal")}</MenuItem>
+              <MenuItem value={texto("Rols.CodRolPremium")}> {texto("Rols.RolPremium")}</MenuItem>
+              
               
             </TextField>
 
@@ -135,7 +171,11 @@ const RolsPermission = () => {
 
           </Box>
 
-    
+          <Snackbar open={openSnackBarAlert} autoHideDuration={6000} onClose={handleCloseSnackBarAlert} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}>
+        <Alert onClose={handleCloseSnackBarAlert} severity="success" sx={{ width: '100%' }}>
+        {texto("RolsPermission.AlertSnackBar")}
+        </Alert>
+      </Snackbar>
           
         </form>
       )}
@@ -152,19 +192,12 @@ const RolsPermission = () => {
 
 
 const checkoutSchema = yup.object().shape({
-  criptomoneda: yup.string().required("required"),
-  tipo: yup.string().required("required"),
-  cantidad: yup.string().required("required"),
-  precio_compra: yup.string().required("required"),
-  comision: yup.string().required("required"),
+  rol: yup.string().required("required"),
   
 });
 const initialValues = {
-  criptomoneda: "",
-  tipo: "",
-  cantidad: "",
-  precio_compra: "",
-  comision: "",
+  rol: "",
+ 
 };
 
 export default RolsPermission;
