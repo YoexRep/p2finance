@@ -9,7 +9,7 @@ import { tokens } from "../../theme";
 import { useTheme } from "@mui/material";
 import {useEffect, useState} from 'react';
 
-import { registrarRolvsPermisos} from "../../services/rols_permissions";
+import { registrarRolvsPermisos , LimpiarRolvsPermisos} from "../../services/rols_permissions";
 
 import RecursiveTreeView from "../../components/RecursiveTreeView";
 
@@ -37,16 +37,22 @@ const RolsPermission = () => {
 
     try{
      
-     
-      selectedNodes.forEach((node) => {
-       
-         registrarRolvsPermisos({ values, node }).then(async()=>{
+      LimpiarRolvsPermisos({ values }).then(async()=>{
         
-          setOpenSnackBarAlert(true);
-          actions.resetForm();
-        });
+        selectedNodes.forEach((node) => {
+       
+          registrarRolvsPermisos({ values, node }).then(async()=>{
+         
+           setOpenSnackBarAlert(true);
+           //actions.resetForm();
+         });
+ 
+       });
+
 
       });
+     
+     
 
   
 

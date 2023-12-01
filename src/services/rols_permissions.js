@@ -25,6 +25,31 @@ export const registrarRolvsPermisos = async ({ values, node }) => {
   }
 };
 
+
+export const LimpiarRolvsPermisos = async ({ values }) => {
+  try {
+    const url = ApiUrl(`Limpiar_Rol_vs_Permiso`);
+
+    const options = {
+      method: "DELETE",
+      body: new URLSearchParams({
+        f_codigof_rol: values.rol
+  
+    
+      }),
+    };
+
+    const response = await fetch(url, options);
+
+    const result = await response.text();
+
+    return JSON.parse(result);
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
 export const updateMicartera = async ({ values }) => {
   try {
     const url = ApiUrl(`updateUser`);
